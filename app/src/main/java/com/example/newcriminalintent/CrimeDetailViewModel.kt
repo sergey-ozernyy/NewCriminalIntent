@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import java.util.*
 
 class CrimeDetailViewModel(): ViewModel() {
+
     private val crimeRepository = CrimeRepository.get()
     private val crimeIdLiveData = MutableLiveData<UUID>()
 
@@ -14,6 +15,7 @@ class CrimeDetailViewModel(): ViewModel() {
         Transformations.switchMap(crimeIdLiveData){ crimeId ->
             crimeRepository.getCrime(crimeId)
         }
+
     fun loadCrime(crimeId: UUID){
         crimeIdLiveData.value = crimeId
     }

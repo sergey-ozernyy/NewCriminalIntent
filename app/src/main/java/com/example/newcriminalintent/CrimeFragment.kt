@@ -70,8 +70,9 @@ class CrimeFragment: Fragment() {
         super.onStart()
 
         val titleWatcher = object : TextWatcher {
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -79,7 +80,7 @@ class CrimeFragment: Fragment() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                TODO("Not yet implemented")
+
             }
         }
 
@@ -95,11 +96,15 @@ class CrimeFragment: Fragment() {
     private fun updateUI(){
         titleField.setText(crime.title)
         dateButton.text = crime.date.toString()
-        solvedCheckBox.isChecked = crime.isSolved
+        solvedCheckBox.apply{
+            isChecked = crime.isSolved
+            jumpDrawablesToCurrentState()
+        }
     }
 
 
     companion object{
+
         fun newInstance(crimeId: UUID):CrimeFragment{
             val args = Bundle().apply{
                 putSerializable(ARG_CRIME_ID, crimeId)
